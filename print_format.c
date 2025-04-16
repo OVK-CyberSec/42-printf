@@ -1,4 +1,9 @@
 #include "ft_printf.h"
+# include <stdarg.h>
+
+int print_char(int c);
+int print_string(char *str);
+int print_digit(long nbr, int base);
 
 int printf_format(char specifer, va_list ap)
 {
