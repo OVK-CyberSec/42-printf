@@ -1,5 +1,5 @@
-#include "ft_printf.h"
-#include <unistd.h>
+# include "ft_printf.h"
+# include <unistd.h>
 # include <stdarg.h>
 
 int printf_format(char specifer, va_list ap);
@@ -17,12 +17,12 @@ int  ft_printf(const char *str, ...)
             count += printf_format(*(++str), ap);
         else
             count += write(1, str, 1);
-            str++;
+        str++;
     }
     va_end(ap);
     return count;
 }
-
+/*
 int main()
 {
     int count;
@@ -31,3 +31,4 @@ int main()
     ft_printf("the chars written are %d\n", count);
     ft_printf("%x\n", 42);
 }
+*/

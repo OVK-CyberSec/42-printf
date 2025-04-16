@@ -38,3 +38,31 @@ int print_digit(long nbr, int base)
         return (count + print_digit(nbr % base, base));
     }
 }
+
+int print_digit_upper(unsigned int nbr, int base)
+{
+    int count = 0;
+    char *numbers = "0123456789ABCDEF";
+
+    if (nbr < base)
+        count += print_char(numbers[nbr]);
+    else
+    {
+        count += print_digit_upper(nbr / base, base);
+        count += print_digit_upper(nbr % base, base);
+    }
+    return count;
+}
+
+int print_pointer(void *ptr)
+{
+    int count = 0;
+    uintptr_t addr = (uintptr_t)ptr;
+
+    count += print_string("0x");
+    if (addr == 0)
+        count += print_char('0');
+    else
+        count += print_digit(addr, 16);
+    return count;
+}
