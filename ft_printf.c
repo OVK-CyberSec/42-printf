@@ -1,6 +1,8 @@
-# include "ft_printf.h"
-# include <unistd.h>
+#include "ft_printf.h"
+#include <unistd.h>
 # include <stdarg.h>
+#include <stdint.h>
+#include <limits.h>
 
 int printf_format(char specifer, va_list ap);
 
@@ -28,7 +30,7 @@ int main()
     int count;
 
     count = ft_printf("Hello %s\n", "John");
-    ft_printf("the chars written are %d\n", count);
+    printf(" %p %p ", 0, 0);
     ft_printf("%x\n", 42);
 }
 */

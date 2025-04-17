@@ -1,4 +1,7 @@
 #include "ft_printf.h"
+#include <unistd.h>
+#include <stdint.h>
+#include <limits.h>
 
 int print_char(int c)
 {
@@ -7,16 +10,18 @@ int print_char(int c)
 
 int print_string(char *str)
 {
-    int count;
+    int count = 0;
 
-    count = 0;
-    while(*str)
+    if (str == NULL)
+        str = "(null)";
+
+    while (*str)
     {
         print_char((int)*str);
         count++;
         str++;
     }
-    return (count);
+    return count;
 }
 
 int print_digit(long nbr, int base)
@@ -39,7 +44,7 @@ int print_digit(long nbr, int base)
     }
 }
 
-int print_digit_upper(unsigned int nbr, int base)
+int print_digit_upper(unsigned int nbr, unsigned int base)
 {
     int count = 0;
     char *numbers = "0123456789ABCDEF";
@@ -51,18 +56,5 @@ int print_digit_upper(unsigned int nbr, int base)
         count += print_digit_upper(nbr / base, base);
         count += print_digit_upper(nbr % base, base);
     }
-    return count;
-}
-
-int print_pointer(void *ptr)
-{
-    int count = 0;
-    uintptr_t addr = (uintptr_t)ptr;
-
-    count += print_string("0x");
-    if (addr == 0)
-        count += print_char('0');
-    else
-        count += print_digit(addr, 16);
     return count;
 }
